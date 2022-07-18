@@ -1,0 +1,24 @@
+# temp files
+temp.png
+
+# built artifacts
+miaoko
+miaospeed
+*.tgz
+
+# configs
+test.yaml
+config.yaml
+.history.yaml
+
+# embeded
+embeded
+
+# intermediates
+emojis
+history
+fonts
+
+# miscs
+.DS_Store
+._.DS_Store
