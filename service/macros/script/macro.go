@@ -23,10 +23,10 @@ func (m *Script) Run(proxy interfaces.Vendor, r *interfaces.SlaveRequest) error 
 
 	wg := sync.WaitGroup{}
 	wg.Add(len(execScripts))
-	for _, script := range execScripts {
-		scriptPtr := &script
+	for i := range execScripts {
+		script := &execScripts[i]
 		go func() {
-			store.Set(scriptPtr.ID, ExecScript(proxy, scriptPtr))
+			store.Set(script.ID, ExecScript(proxy, script))
 			wg.Done()
 		}()
 	}
