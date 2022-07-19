@@ -5,6 +5,7 @@ temp.png
 miaoko
 miaospeed
 *.tgz
+*.dev.sh
 
 # configs
 test.yaml
