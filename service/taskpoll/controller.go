@@ -172,6 +172,7 @@ func (tpc *TaskPollController) remove_unsafe(id string, exitCode TaskPollExitCod
 	})
 
 	if tp != nil && exitCode != TPExitSuccess {
+		utils.DWarnf("Task Poll | Task interrupted, id=%v reason=%v", id, exitCode)
 		tp.OnExit(exitCode)
 	}
 }
