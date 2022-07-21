@@ -115,7 +115,7 @@ func (tpc *TaskPollController) AwaitingCount() int {
 
 	totalCount := 0
 	for _, tp := range tpc.taskPoll {
-		totalCount += tp.Count()
+		totalCount += (tp.Count() - tp.counter)
 	}
 	return totalCount
 }
