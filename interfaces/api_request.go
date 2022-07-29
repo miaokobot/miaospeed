@@ -55,15 +55,17 @@ type SlaveRequest struct {
 	Vendor VendorType
 	Nodes  []SlaveRequestNode
 
-	Challenge string
+	RandomSequence string
+	Challenge      string
 }
 
 func (sr *SlaveRequest) Clone() *SlaveRequest {
 	return &SlaveRequest{
-		Basics:    *sr.Basics.Clone(),
-		Options:   *sr.Options.Clone(),
-		Configs:   *sr.Configs.Clone(),
-		Nodes:     cloneSlice(sr.Nodes),
-		Challenge: sr.Challenge,
+		Basics:         *sr.Basics.Clone(),
+		Options:        *sr.Options.Clone(),
+		Configs:        *sr.Configs.Clone(),
+		Nodes:          cloneSlice(sr.Nodes),
+		RandomSequence: sr.RandomSequence,
+		Challenge:      sr.Challenge,
 	}
 }
