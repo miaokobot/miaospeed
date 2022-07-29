@@ -4,8 +4,10 @@ temp.png
 # built artifacts
 miaoko
 miaospeed
+dist
 *.tgz
 *.dev.sh
+*.release.sh
 
 # configs
 test.yaml

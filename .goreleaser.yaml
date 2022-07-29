@@ -1,0 +1,17 @@
+builds:
+  - id: miaospeed
+    dir: .
+    binary: miaospeed
+    ldflags:
+      - -s -w -X "main.COMMIT={{.Commit}}" -X "main.BUILDCOUNT={{.Env.BUILDCOUNT}}" -X "main.BRAND={{.Env.BRAND}}" -X "main.COMPILATIONTIME={{.Env.COMPILATIONTIME}}"
+    goos:
+      - darwin
+      - linux
+      - windows
+archives:
+  - files:
+    - README.md
+release:
+  github:
+    owner: miaokobot
+    name: miaospeed
