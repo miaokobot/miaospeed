@@ -5,10 +5,14 @@ import (
 
 	"github.com/miaokobot/miaospeed/vendors/clash"
 	"github.com/miaokobot/miaospeed/vendors/invalid"
+	"github.com/miaokobot/miaospeed/vendors/local"
 )
 
 var registeredList = map[interfaces.VendorType]func() interfaces.Vendor{
-	interfaces.VenderClash: func() interfaces.Vendor {
+	interfaces.VendorLocal: func() interfaces.Vendor {
+		return &local.Local{}
+	},
+	interfaces.VendorClash: func() interfaces.Vendor {
 		return &clash.Clash{}
 	},
 }

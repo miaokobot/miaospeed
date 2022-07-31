@@ -4,40 +4,66 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"strings"
+	"path"
 
 	"github.com/miaokobot/miaospeed/utils"
 )
 
-func InitConfig() *utils.GlobalConfig {
-	gcfg := &utils.GCFG
+var cmdName string = "miaospeed"
 
-	flag.StringVar(&gcfg.Token, "token", "", "specify the token used to sign request")
-	flag.StringVar(&gcfg.Binder, "bind", "", "bind a socket, can be format like 0.0.0.0:8080 or /tmp/unix_socket")
-	flag.Uint64Var(&gcfg.SpeedLimit, "speedlimit", 0, "speed ratelimit (in Bytes per Second), default with no limits")
-	flag.UintVar(&gcfg.PauseSecond, "pausesecond", 0, "pause such period after each speed job (seconds)")
-	flag.BoolVar(&gcfg.MiaoKoSignedTLS, "mtls", false, "enable miaoko certs for tls verification")
-	flag.BoolVar(&gcfg.NoSpeedFlag, "nospeed", false, "decline all speedtest requests")
+type SubCliType string
 
-	verboseMode := flag.Bool("verbose", false, "whether to print out systems log")
-	versionOnly := flag.Bool("version", false, "display version and exit")
-	whiteList := flag.String("whitelist", "", "bot id whitelist, can be format like 1111,2222,3333")
+const (
+	SCTServer     SubCliType = "server"
+	SCTScriptTest SubCliType = "script"
+)
 
-	flag.Parse()
-
-	if *verboseMode {
-		utils.VerboseLevel = utils.LTLog
+func RunCli() {
+	subCmd := SubCliType("")
+	if len(os.Args) >= 2 {
+		subCmd = SubCliType(os.Args[1])
 	}
+
+	cmdName = path.Base(os.Args[0])
+	switch subCmd {
+	case SCTServer:
+		RunCliServer()
+	case SCTScriptTest:
+		RunCliScriptTest()
+	default:
+		RunCliDefault()
+	}
+}
+
+func RunCliDefault() {
+	sflag := flag.NewFlagSet(cmdName, flag.ExitOnError)
+
+	versionOnly := sflag.Bool("version", false, "display version and exit")
+	sflag.Parse(os.Args[1:])
 
 	if *versionOnly {
 		fmt.Println(utils.VERSION)
 		os.Exit(0)
 	}
 
-	gcfg.WhiteList = make([]string, 0)
-	if *whiteList != "" {
-		gcfg.WhiteList = strings.Split(*whiteList, ",")
-	}
+	sflag.Usage()
 
-	return gcfg
+	fmt.Printf("\n")
+	fmt.Printf("Subcommands of %s:\n", cmdName)
+	fmt.Printf("  server\n")
+	fmt.Printf("        start the miaospeed backend as a server.\n")
+	fmt.Printf("  script\n")
+	fmt.Printf("        run a temporary script test to test the correctness of your script.\n")
+
+	os.Exit(0)
+}
+
+func parseFlag(sflag *flag.FlagSet) {
+	verboseMode := sflag.Bool("verbose", false, "whether to print out systems log")
+
+	sflag.Parse(os.Args[2:])
+
+	if *verboseMode {
+		utils.VerboseLevel = utils.LTLog
+	}
 }

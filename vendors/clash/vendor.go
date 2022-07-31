@@ -14,7 +14,7 @@ type Clash struct {
 }
 
 func (c *Clash) Type() interfaces.VendorType {
-	return interfaces.VenderClash
+	return interfaces.VendorClash
 }
 
 func (c *Clash) Status() interfaces.VendorStatus {

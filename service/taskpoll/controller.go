@@ -126,7 +126,7 @@ func (tpc *TaskPollController) Start() {
 	for {
 		select {
 		case <-sigTerm:
-			utils.DInfo("task server shutted down.")
+			utils.DLog("task server shutted down.")
 			return
 		default:
 			if itemIdx, tpw := tpc.populate(); tpw != nil {

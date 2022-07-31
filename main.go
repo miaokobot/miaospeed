@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/miaokobot/miaospeed/service"
 	"github.com/miaokobot/miaospeed/utils"
 )
 
@@ -16,19 +15,5 @@ func main() {
 	utils.COMMIT = COMMIT
 	utils.BRAND = BRAND
 
-	InitConfig()
-	utils.DInfof("MiaoSpeed speedtesting client %s", utils.VERSION)
-
-	// start task server
-	go service.StartTaskServer()
-
-	// start api server
-	service.CleanUpServer()
-	go service.InitServer()
-
-	<-utils.MakeSysChan()
-
-	// clean up
-	service.CleanUpServer()
-	utils.DInfo("shutting down.")
+	RunCli()
 }

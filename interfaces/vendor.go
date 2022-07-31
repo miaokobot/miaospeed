@@ -8,9 +8,10 @@ import (
 type VendorType string
 
 const (
-	VenderClash VendorType = "Clash"
+	VendorLocal VendorType = "Local"
+	VendorClash VendorType = "Clash"
 
-	VenderInvalid VendorType = "Invalid"
+	VendorInvalid VendorType = "Invalid"
 )
 
 type VendorStatus uint

@@ -13,7 +13,7 @@ type Invalid struct {
 }
 
 func (c *Invalid) Type() interfaces.VendorType {
-	return interfaces.VenderInvalid
+	return interfaces.VendorInvalid
 }
 
 func (c *Invalid) Status() interfaces.VendorStatus {

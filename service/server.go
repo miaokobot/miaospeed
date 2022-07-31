@@ -37,7 +37,7 @@ func InitServer() {
 		os.Exit(1)
 	}
 
-	utils.DInfof("MiaoSpeed Server | Start Listening, bind=%s", utils.GCFG.Binder)
+	utils.DWarnf("MiaoSpeed Server | Start Listening, bind=%s", utils.GCFG.Binder)
 
 	wsHandler := WsHandler{
 		Serve: func(rw http.ResponseWriter, r *http.Request) {
