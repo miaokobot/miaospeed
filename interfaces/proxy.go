@@ -37,3 +37,11 @@ type ProxyInfo struct {
 	Address string
 	Type    ProxyType
 }
+
+func (pi *ProxyInfo) Map() map[string]string {
+	return map[string]string{
+		"Name":    pi.Name,
+		"Address": pi.Address,
+		"Type":    string(pi.Type),
+	}
+}

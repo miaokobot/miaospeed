@@ -30,6 +30,13 @@ func VMNew() *goja.Runtime {
 func VMNewWithVendor(p interfaces.Vendor, network interfaces.RequestOptionsNetwork) *goja.Runtime {
 	vm := VMNew()
 
+	if p != nil {
+		pi := p.ProxyInfo()
+		vm.Set("proxy", vm.ToValue(pi.Map()))
+	} else {
+		vm.Set("proxy", nil)
+	}
+
 	vm.Set("fetch", factory.FetchFactory(vm, p, network))
 	vm.Set("netcat", factory.NetCatFactory(vm, p, network))
 
