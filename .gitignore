@@ -15,7 +15,8 @@ config.yaml
 .history.yaml
 
 # embeded
-embeded
+*/embeded/*
+!*/embeded/.gitkeep
 
 # intermediates
 emojis
