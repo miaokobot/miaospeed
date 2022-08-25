@@ -70,7 +70,7 @@ func (tpc *TaskPollController) populate() (int, *taskPollItemWrapper) {
 
 	for _, tp := range tpc.taskPoll {
 		factor -= int(tp.Weight())
-		if factor <= 0 {
+		if factor < 0 {
 			counter := tp.counter
 
 			tp.counter += 1
