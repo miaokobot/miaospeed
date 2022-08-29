@@ -185,8 +185,8 @@ func (tpc *TaskPollController) Remove(id string, exitCode TaskPollExitCode) {
 }
 
 func NewTaskPollController(name string, concurrency uint, interval time.Duration, emptyWait time.Duration) *TaskPollController {
-	if concurrency == 0 || concurrency > 256 {
-		concurrency = 16
+	if concurrency == 0 || concurrency > 1024 {
+		concurrency = 64
 	}
 
 	return &TaskPollController{
