@@ -13,9 +13,7 @@ type SlaveRequestConfigs struct {
 	PingAverageOver uint16 `yaml:"pingAverageOver,omitempty" cf:"name=🧮 多次 Ping 求均值,value"`
 	PingAddress     string `yaml:"pingAddress,omitempty" cf:"name=🏫 URL Ping 地址"`
 
-	TaskThreading uint `yaml:"taskThreading,omitempty" cf:"name=🧶 测试线程数"`
-	TaskRetry     uint `yaml:"taskRetry,omitempty" cf:"name=🐛 测试重试次数"`
-
+	TaskRetry  uint     `yaml:"taskRetry,omitempty" cf:"name=🐛 测试重试次数"`
 	DNSServers []string `yaml:"dnsServers,omitempty" cf:"name=💾 自定义DNS服务器,childvalue"`
 
 	TaskTimeout uint     `yaml:"-" fw:"readonly"`
@@ -26,7 +24,7 @@ func (src *SlaveRequestConfigs) DescriptionText() string {
 	hint := structs.X("案例:\ndownloadDuration: 取值范围 [1,30]\ndownloadThreading: 取值范围 [1,8]\ntaskThreading: 取值范围 [1,32]\ntaskRetry: 取值范围 [1,10]\n\n当前:\n")
 	cont := "empty"
 	if src != nil {
-		cont = structs.X("downloadDuration: %d\ndownloadThreading: %d\ntaskThreading: %d\ntaskRetry: %d\n", src.DownloadDuration, src.DownloadThreading, src.TaskThreading, src.TaskRetry)
+		cont = structs.X("downloadDuration: %d\ndownloadThreading: %d\ntaskRetry: %d\n", src.DownloadDuration, src.DownloadThreading, src.TaskRetry)
 	}
 	return hint + cont
 }
@@ -40,9 +38,7 @@ func (src *SlaveRequestConfigs) Clone() *SlaveRequestConfigs {
 		PingAverageOver: src.PingAverageOver,
 		PingAddress:     src.PingAddress,
 
-		TaskThreading: src.TaskThreading,
-		TaskRetry:     src.TaskRetry,
-
+		TaskRetry:  src.TaskRetry,
 		DNSServers: cloneSlice(src.DNSServers),
 
 		TaskTimeout: src.TaskTimeout,
@@ -69,9 +65,6 @@ func (src *SlaveRequestConfigs) Merge(from *SlaveRequestConfigs) *SlaveRequestCo
 		ret.PingAddress = from.PingAddress
 	}
 
-	if from.TaskThreading != 0 {
-		ret.TaskThreading = from.TaskThreading
-	}
 	if from.TaskRetry != 0 {
 		ret.TaskRetry = from.TaskRetry
 	}
@@ -105,9 +98,6 @@ func (cfg *SlaveRequestConfigs) Check() *SlaveRequestConfigs {
 		cfg.DownloadThreading = preconfigs.SPEED_DEFAULT_THREADING
 	}
 
-	if cfg.TaskThreading < 1 || cfg.TaskThreading > 32 {
-		cfg.TaskThreading = preconfigs.SLAVE_DEFAULT_THREADING
-	}
 	if cfg.TaskRetry < 1 || cfg.TaskRetry > 10 {
 		cfg.TaskRetry = preconfigs.SLAVE_DEFAULT_RETRY
 	}

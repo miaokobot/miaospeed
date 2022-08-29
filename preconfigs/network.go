@@ -24,8 +24,7 @@ const (
 
 	SPEED_DEFAULT_LARGE_FILE_DEFAULT = SPEED_DEFAULT_LARGE_FILE_DYN_INTL
 
-	SLAVE_DEFAULT_PING           = "http://gstatic.com/generate_204"
-	SLAVE_DEFAULT_THREADING uint = 4
-	SLAVE_DEFAULT_RETRY     uint = 1
-	SLAVE_DEFAULT_TIMEOUT   uint = 5000
+	SLAVE_DEFAULT_PING         = "http://gstatic.com/generate_204"
+	SLAVE_DEFAULT_RETRY   uint = 1
+	SLAVE_DEFAULT_TIMEOUT uint = 5000
 )
