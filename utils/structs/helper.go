@@ -158,6 +158,15 @@ func WithIn[T Integer](t, a, b T) T {
 	return t
 }
 
+func WithInDefault[T Integer](t, a, b, defaultValue T) T {
+	if t < a {
+		return defaultValue
+	} else if b < t {
+		return defaultValue
+	}
+	return t
+}
+
 func Max[T Integer](a ...T) T {
 	if len(a) == 0 {
 		return 0
