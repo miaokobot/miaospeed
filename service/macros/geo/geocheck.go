@@ -13,6 +13,10 @@ import (
 var GeoCache *obliviousmap.ObliviousMap[*interfaces.GeoInfo]
 
 func RunGeoCheck(p interfaces.Vendor, script string, ip string, retry int, network interfaces.RequestOptionsNetwork) *interfaces.GeoInfo {
+	if mmdbRet := RunMMDBCheck(ip); mmdbRet != nil {
+		return mmdbRet
+	}
+
 	if r, ok := GeoCache.Get(ip); ok && r != nil {
 		return r
 	}

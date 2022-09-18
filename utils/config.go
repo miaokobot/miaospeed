@@ -14,6 +14,7 @@ type GlobalConfig struct {
 	ConnTaskTreading uint
 	MiaoKoSignedTLS  bool
 	NoSpeedFlag      bool
+	MaxmindDB        string
 }
 
 func (gc *GlobalConfig) InWhiteList(invoker string) bool {

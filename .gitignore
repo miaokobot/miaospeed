@@ -8,6 +8,7 @@ dist
 *.tgz
 *.dev.sh
 *.release.sh
+*.mmdb
 
 # configs
 test.yaml

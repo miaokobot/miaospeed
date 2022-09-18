@@ -12,5 +12,5 @@ var BUILDTOKEN string
 
 const (
 	IDENTIFIER = "Speed"
-	VERSION    = "4.0.3"
+	VERSION    = "4.1.0"
 )
