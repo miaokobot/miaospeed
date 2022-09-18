@@ -94,7 +94,7 @@ func (cfg *SlaveRequestConfigs) Check() *SlaveRequestConfigs {
 	if cfg.DownloadDuration < 1 || cfg.DownloadDuration > 30 {
 		cfg.DownloadDuration = preconfigs.SPEED_DEFAULT_DURATION
 	}
-	if cfg.DownloadThreading < 1 || cfg.DownloadThreading > 8 {
+	if cfg.DownloadThreading < 1 || cfg.DownloadThreading > 32 {
 		cfg.DownloadThreading = preconfigs.SPEED_DEFAULT_THREADING
 	}
 
