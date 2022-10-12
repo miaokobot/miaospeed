@@ -8,6 +8,7 @@ import (
 )
 
 type MMDBResult struct {
+	IP     string
 	ASN    int    `maxminddb:"autonomous_system_number"`
 	ASNOrg string `maxminddb:"autonomous_system_organization"`
 
@@ -39,6 +40,16 @@ type MMDBResult struct {
 			ZH string `maxminddb:"zh-CN"`
 		} `maxminddb:"names"`
 	} `maxminddb:"country"`
+
+	RegisteredCountry struct {
+		ISOCode   string `maxminddb:"iso_code"`
+		GeoNameID int    `maxminddb:"geoname_id"`
+		Names     struct {
+			EN string `maxminddb:"en"`
+			JA string `maxminddb:"ja"`
+			ZH string `maxminddb:"zh-CN"`
+		} `maxminddb:"names"`
+	} `maxminddb:"registered_country"`
 
 	Location struct {
 		Accuracy  int     `maxminddb:"accuracy_radius"`
@@ -73,7 +84,9 @@ func QueryMaxMindDB(rawIp string) *MMDBResult {
 		return nil
 	}
 
-	result := MMDBResult{}
+	result := MMDBResult{
+		IP: rawIp,
+	}
 
 	ip := net.ParseIP(rawIp)
 	if ip == nil {
