@@ -2,7 +2,6 @@ package utils
 
 import (
 	"net"
-	"os"
 	"strings"
 
 	"github.com/oschwald/maxminddb-golang"
@@ -51,9 +50,9 @@ type MMDBResult struct {
 
 var MaxMindDBs []*maxminddb.Reader
 
-func LoadMaxMindDB(pathList string) {
+func LoadMaxMindDB(pathList string) error {
 	if pathList == "" {
-		return
+		return nil
 	}
 
 	MaxMindDBs = []*maxminddb.Reader{}
@@ -61,11 +60,12 @@ func LoadMaxMindDB(pathList string) {
 		DWarnf("Maxmind Database | Loading maxmind database, path=%v", path)
 		mmdb, err := maxminddb.Open(path)
 		if err != nil {
-			DErrorf("Maxmind Database | Cannot load maxmind database, err=%v", err.Error())
-			os.Exit(1)
+			return DErrorf("Maxmind Database | Cannot load maxmind database, err=%v", err.Error()).Error()
 		}
 		MaxMindDBs = append(MaxMindDBs, mmdb)
 	}
+
+	return nil
 }
 
 func QueryMaxMindDB(rawIp string) *MMDBResult {

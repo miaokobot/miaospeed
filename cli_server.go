@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"os"
 	"strings"
 
 	"github.com/miaokobot/miaospeed/service"
@@ -37,7 +38,9 @@ func RunCliServer() {
 	utils.DWarnf("MiaoSpeed speedtesting client %s", utils.VERSION)
 
 	// load maxmind db
-	utils.LoadMaxMindDB(utils.GCFG.MaxmindDB)
+	if utils.LoadMaxMindDB(utils.GCFG.MaxmindDB) != nil {
+		os.Exit(1)
+	}
 
 	// start task server
 	go service.StartTaskServer()
