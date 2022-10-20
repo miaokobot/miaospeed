@@ -8,7 +8,10 @@ import (
 )
 
 type MMDBResult struct {
-	IP     string
+	IP      string
+	Reverse string
+	Via     string
+
 	ASN    int    `maxminddb:"autonomous_system_number"`
 	ASNOrg string `maxminddb:"autonomous_system_organization"`
 
