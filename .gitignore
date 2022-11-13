@@ -7,7 +7,7 @@ miaospeed
 dist
 *.tgz
 *.dev.sh
-*.release.sh
+build.*.sh
 *.mmdb
 
 # configs
