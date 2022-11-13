@@ -43,6 +43,7 @@ miaospeed 采用 AGPLv3 协议开源，您可以按照 AGPLv3 协议对 miaospee
 miaospeed 采用了如下的开源项目:
 
 - Dreamacro/clash [GPLv3]
+- MetaCubeX/Clash.Meta [GPLv3]
 - juju/ratelimit [LGPLv3]
 - dop251/goja [MIT]
 - json-iterator/go [MIT]
