@@ -18,6 +18,7 @@ config.yaml
 # embeded
 */embeded/*
 !*/embeded/.gitkeep
+!*/embeded/predefined.js
 
 # intermediates
 emojis
