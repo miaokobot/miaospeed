@@ -83,7 +83,7 @@ func (tms *MultiStacks) First(tag string) *GeoInfo {
 	}
 
 	if tag != "v4" {
-		for _, v6 := range tms.IPv4Stack {
+		for _, v6 := range tms.IPv6Stack {
 			if v6.IP != "" {
 				return v6
 			}

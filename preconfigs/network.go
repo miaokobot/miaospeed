@@ -1,6 +1,6 @@
 package preconfigs
 
-const PROXY_DEFAULT_STUN_SERVER = "udp://stun.l.google.com:19302"
+const PROXY_DEFAULT_STUN_SERVER = "udp://stun.voipstunt.com:3478"
 
 const NETCAT_HTTP_PAYLOAD = `GET %s HTTP/1.1
 Accept: */*
